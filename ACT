@@ -1,0 +1,30 @@
+# ACT_Python_2p6_TeamXXX.py
+# Purpose: Determine the phase of Lead and Tin based on Temperature and % Sn.
+
+temp = float(input("Enter temperature in °C: "))
+sn_pct = float(input("Enter percentage of tin (% Sn as a number 0 to 100, e.g., 75 for 75%): "))
+
+if temp <= 183:
+    lead_phase = "Solid"
+    tin_phase = "Solid"
+else:
+    if sn_pct <= 62:
+        line1_temp = 327 - (144 / 62) * sn_pct
+        if temp > line1_temp:
+            lead_phase = "Molten"
+            tin_phase = "Molten"
+        else:
+            lead_phase = "Solid"
+            tin_phase = "Molten"
+    else:
+        line2_temp = 183 + (49 / 38) * (sn_pct - 62)
+        if temp > line2_temp:
+            lead_phase = "Molten"
+            tin_phase = "Molten"
+        else:
+            lead_phase = "Molten"
+            tin_phase = "Solid"
+
+print(f"\n--- Results at {temp}°C and {sn_pct}% Sn ---")
+print(f"Lead Phase: {lead_phase}")
+print(f"Tin Phase:  {tin_phase}")
